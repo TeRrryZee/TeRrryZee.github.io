@@ -309,6 +309,51 @@ button:focus-visible {
   font-weight: 820;
 }
 
+.private-entry {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.36fr) minmax(0, 0.64fr);
+  gap: 28px;
+  align-items: start;
+  padding: 34px 0 58px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.private-entry-copy h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(28px, 3.2vw, 42px);
+  font-weight: 880;
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+
+.private-entry-copy p:last-child {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.private-post-list {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.post-card-private {
+  min-height: 236px;
+  background:
+    linear-gradient(135deg, rgba(15, 23, 42, 0.035), transparent 48%),
+    rgba(255, 255, 255, 0.84);
+}
+
+.post-card-private::before {
+  background: linear-gradient(180deg, var(--ink), var(--gold));
+}
+
+.post-card-private .lock-badge {
+  background: rgba(15, 23, 42, 0.08);
+  color: var(--ink);
+}
+
 .latest {
   padding: 44px 0 96px;
 }
@@ -793,6 +838,7 @@ button:focus-visible {
   }
 
   .intro-band,
+  .private-entry,
   .split-page {
     grid-template-columns: 1fr;
     gap: 18px;
