@@ -12,7 +12,9 @@
   --teal-dark: #0d5f67;
   --gold: #c58a25;
   --focus: #0f766e;
+  --paper: #fbf7ef;
   --shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+  --shadow-strong: 0 24px 70px rgba(15, 23, 42, 0.12);
   --content: min(1120px, calc(100vw - 40px));
   --reading: min(760px, calc(100vw - 40px));
 }
@@ -28,9 +30,9 @@ html {
 body {
   margin: 0;
   background:
-    linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px) 0 0 / 80px 80px,
-    linear-gradient(0deg, rgba(22, 143, 139, 0.035) 1px, transparent 1px) 0 0 / 80px 80px,
-    linear-gradient(180deg, #ffffff 0%, var(--bg) 46%, #eef6f5 100%);
+    linear-gradient(90deg, rgba(15, 23, 42, 0.032) 1px, transparent 1px) 0 0 / 88px 88px,
+    linear-gradient(0deg, rgba(22, 143, 139, 0.032) 1px, transparent 1px) 0 0 / 88px 88px,
+    linear-gradient(180deg, #ffffff 0%, var(--bg) 42%, #eef6f5 100%);
   color: var(--text);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
   line-height: 1.7;
@@ -66,6 +68,7 @@ button:focus-visible {
   border-bottom: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.86);
   backdrop-filter: blur(18px);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
 }
 
 .brand {
@@ -77,6 +80,12 @@ button:focus-visible {
   font-size: 15px;
   font-weight: 850;
   white-space: nowrap;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.brand:hover {
+  color: var(--teal-dark);
+  transform: translateY(-1px);
 }
 
 .brand-logo {
@@ -102,19 +111,25 @@ button:focus-visible {
   color: #304052;
   font-size: 14px;
   font-weight: 700;
-  transition: background-color 180ms ease, color 180ms ease;
+  transition: background-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
 }
 
-.nav a:hover {
+.nav a:hover,
+.nav a.is-active {
   background: rgba(22, 143, 139, 0.09);
   color: var(--teal-dark);
 }
 
+.nav a.is-active {
+  box-shadow: inset 0 0 0 1px rgba(22, 143, 139, 0.2);
+}
+
 .hero {
   position: relative;
+  isolation: isolate;
   display: grid;
   place-items: center;
-  min-height: 54svh;
+  min-height: 58svh;
   padding: 70px 20px 58px;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
@@ -143,6 +158,17 @@ button:focus-visible {
   border-left: 0;
   border-right: 0;
   opacity: 0.6;
+}
+
+.hero-mark {
+  position: absolute;
+  z-index: 0;
+  right: max(24px, calc((100vw - 1120px) / 2));
+  bottom: 16px;
+  width: clamp(210px, 32vw, 430px);
+  opacity: 0.13;
+  filter: saturate(0.95) drop-shadow(0 34px 48px rgba(15, 23, 42, 0.2));
+  pointer-events: none;
 }
 
 .hero-content {
@@ -180,6 +206,7 @@ button:focus-visible {
   color: var(--muted);
   font-size: clamp(17px, 2vw, 22px);
   line-height: 1.72;
+  text-wrap: balance;
 }
 
 .hero-actions {
@@ -199,7 +226,7 @@ button:focus-visible {
   border: 1px solid transparent;
   border-radius: 8px;
   font-weight: 800;
-  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease;
+  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
 }
 
 .button:hover {
@@ -214,6 +241,7 @@ button:focus-visible {
 
 .button.primary:hover {
   background: #17233a;
+  box-shadow: var(--shadow);
 }
 
 .button.ghost {
@@ -257,6 +285,30 @@ button:focus-visible {
   font-size: 17px;
 }
 
+.intro-copy {
+  display: grid;
+  gap: 18px;
+}
+
+.signal-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.signal-row span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 5px 11px;
+  border: 1px solid rgba(197, 138, 37, 0.24);
+  border-radius: 999px;
+  background: rgba(251, 247, 239, 0.78);
+  color: #795414;
+  font-size: 13px;
+  font-weight: 820;
+}
+
 .latest {
   padding: 44px 0 96px;
 }
@@ -287,19 +339,30 @@ button:focus-visible {
 }
 
 .post-card {
+  position: relative;
   min-height: 266px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface-soft);
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
   backdrop-filter: blur(12px);
+  overflow: hidden;
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.post-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--teal), var(--gold));
+  opacity: 0.72;
 }
 
 .post-card:hover {
   transform: translateY(-3px);
   border-color: rgba(22, 143, 139, 0.38);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-strong);
 }
 
 .post-card a {
@@ -307,6 +370,26 @@ button:focus-visible {
   grid-template-rows: auto auto 1fr auto;
   min-height: inherit;
   padding: 22px;
+}
+
+.post-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.post-card-top span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(22, 143, 139, 0.09);
+  color: var(--teal-dark);
+  font-size: 12px;
+  font-weight: 820;
+  white-space: nowrap;
 }
 
 .post-card time,
@@ -322,11 +405,16 @@ button:focus-visible {
   color: var(--ink);
   font-size: 24px;
   line-height: 1.25;
+  text-wrap: balance;
 }
 
 .post-card p {
   margin: 0;
   color: var(--muted);
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
 }
 
 .meta-row {
@@ -348,6 +436,16 @@ button:focus-visible {
   color: var(--teal-dark);
   font-size: 13px;
   font-weight: 760;
+}
+
+.meta-row .read-more {
+  margin-left: auto;
+  background: transparent;
+  color: var(--ink);
+}
+
+.post-card:hover .read-more {
+  color: var(--teal-dark);
 }
 
 .article,
@@ -420,6 +518,14 @@ button:focus-visible {
   color: var(--teal-dark);
   font-weight: 760;
   border-bottom: 1px solid rgba(22, 143, 139, 0.36);
+}
+
+.article-body img {
+  width: 100%;
+  margin: 2rem 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
 }
 
 .article-body code {
@@ -555,12 +661,23 @@ button:focus-visible {
   align-items: center;
   padding: 18px 0;
   border-bottom: 1px solid var(--line);
+  transition: color 160ms ease, padding-left 160ms ease;
+}
+
+.archive-item:hover {
+  padding-left: 8px;
+  color: var(--teal-dark);
 }
 
 .archive-item span {
   color: var(--ink);
   font-size: 20px;
   font-weight: 790;
+}
+
+.empty-state {
+  margin: 24px 0 0;
+  color: var(--muted);
 }
 
 .taxonomy-grid,
@@ -633,27 +750,46 @@ button:focus-visible {
   }
 
   .site-header {
-    align-items: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
     padding: 12px 14px;
   }
 
   .brand span {
-    display: none;
+    display: inline;
   }
 
   .nav {
+    flex: 1 1 auto;
+    min-width: 0;
     gap: 2px;
+    justify-content: flex-end;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+  }
+
+  .nav::-webkit-scrollbar {
+    display: none;
   }
 
   .nav a {
     min-height: 36px;
-    padding: 6px 8px;
+    flex: 0 0 auto;
+    padding: 6px 10px;
     font-size: 13px;
   }
 
   .hero {
-    min-height: 52svh;
-    padding: 50px 14px 48px;
+    min-height: 56svh;
+    padding: 54px 14px 50px;
+  }
+
+  .hero-mark {
+    right: -36px;
+    bottom: 8px;
+    width: 260px;
+    opacity: 0.1;
   }
 
   .intro-band,
@@ -664,6 +800,10 @@ button:focus-visible {
 
   .post-list {
     grid-template-columns: 1fr;
+  }
+
+  .post-card {
+    min-height: 236px;
   }
 
   .section-heading,
