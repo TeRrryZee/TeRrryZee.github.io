@@ -1,18 +1,18 @@
 :root {
   color-scheme: light;
-  --bg: #f7fafc;
+  --bg: #f6fbff;
   --surface: #ffffff;
   --surface-soft: rgba(255, 255, 255, 0.82);
   --ink: #0f172a;
   --text: #263244;
-  --muted: #657386;
-  --line: rgba(15, 23, 42, 0.1);
-  --line-strong: rgba(15, 23, 42, 0.16);
-  --teal: #168f8b;
-  --teal-dark: #0d5f67;
-  --gold: #c58a25;
-  --focus: #0f766e;
-  --paper: #fbf7ef;
+  --muted: #62748c;
+  --line: rgba(37, 99, 235, 0.12);
+  --line-strong: rgba(37, 99, 235, 0.2);
+  --teal: #2f80ed;
+  --teal-dark: #1d4ed8;
+  --gold: #60a5fa;
+  --focus: #2563eb;
+  --paper: #eff6ff;
   --shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
   --shadow-strong: 0 24px 70px rgba(15, 23, 42, 0.12);
   --content: min(1120px, calc(100vw - 40px));
@@ -29,10 +29,7 @@ html {
 
 body {
   margin: 0;
-  background:
-    linear-gradient(90deg, rgba(15, 23, 42, 0.032) 1px, transparent 1px) 0 0 / 88px 88px,
-    linear-gradient(0deg, rgba(22, 143, 139, 0.032) 1px, transparent 1px) 0 0 / 88px 88px,
-    linear-gradient(180deg, #ffffff 0%, var(--bg) 42%, #eef6f5 100%);
+  background: linear-gradient(180deg, #ffffff 0%, var(--bg) 46%, #eef6ff 100%);
   color: var(--text);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
   line-height: 1.7;
@@ -445,6 +442,223 @@ button:focus-visible {
 }
 
 .post-card:hover .read-more {
+  color: var(--teal-dark);
+}
+
+.home-page {
+  width: min(980px, calc(100vw - 40px));
+  margin: 0 auto;
+  padding: 58px 0 104px;
+}
+
+.home-shell {
+  display: grid;
+  grid-template-columns: minmax(230px, 300px) minmax(0, 600px);
+  gap: 56px;
+  align-items: start;
+  justify-content: center;
+}
+
+.home-profile {
+  position: sticky;
+  top: 94px;
+  display: grid;
+  gap: 18px;
+  align-content: start;
+  padding-top: 8px;
+}
+
+.home-profile-mark {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+
+.home-kicker {
+  margin: 0;
+  color: var(--teal-dark);
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.home-profile h1,
+.home-feed h2 {
+  margin: 0;
+  color: var(--ink);
+  letter-spacing: 0;
+}
+
+.home-profile h1 {
+  font-size: clamp(34px, 4.4vw, 58px);
+  line-height: 1.02;
+  font-weight: 900;
+}
+
+.home-summary {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.82;
+}
+
+.home-tags,
+.home-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.home-tags span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 4px 10px;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  border-radius: 999px;
+  background: rgba(239, 246, 255, 0.86);
+  color: #1d4ed8;
+  font-size: 13px;
+  font-weight: 780;
+}
+
+.home-links {
+  padding-top: 8px;
+}
+
+.home-links a,
+.home-archive-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  color: var(--teal-dark);
+  font-weight: 820;
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+.home-links a:hover,
+.home-archive-link:hover {
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.home-feed {
+  min-width: 0;
+}
+
+.home-feed-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.home-feed h2 {
+  margin-top: 8px;
+  font-size: clamp(34px, 4vw, 56px);
+  line-height: 1.04;
+  font-weight: 900;
+}
+
+.home-post-list {
+  display: grid;
+  gap: 10px;
+  max-width: 600px;
+}
+
+.home-post-row a {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr) 24px;
+  gap: 14px;
+  align-items: center;
+  min-height: 58px;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.82);
+  transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.home-post-row a:hover {
+  border-color: rgba(37, 99, 235, 0.32);
+  background: #ffffff;
+  transform: translateY(-1px);
+}
+
+.home-post-row time {
+  color: var(--muted);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.home-post-main {
+  min-width: 0;
+}
+
+.home-post-main h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(17px, 1.8vw, 22px);
+  line-height: 1.32;
+  font-weight: 850;
+}
+
+.home-post-arrow {
+  color: var(--teal-dark);
+  font-size: 18px;
+  line-height: 1;
+  justify-self: end;
+  transition: transform 160ms ease, color 160ms ease;
+}
+
+.home-post-row a:hover .home-post-main h3,
+.home-post-row a:hover .home-post-arrow {
+  color: var(--teal-dark);
+}
+
+.home-post-row a:hover .home-post-arrow {
+  transform: translateX(3px);
+}
+
+.home-empty {
+  margin: 0;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.home-notes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 72px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line-strong);
+}
+
+.home-note {
+  display: grid;
+  gap: 6px;
+  padding-top: 2px;
+}
+
+.home-note span {
+  color: var(--teal-dark);
+  font-size: 12px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.home-note strong {
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.35;
+  transition: color 160ms ease;
+}
+
+.home-note:hover strong {
   color: var(--teal-dark);
 }
 
@@ -865,6 +1079,58 @@ button:focus-visible {
     opacity: 0.1;
   }
 
+  .home-page {
+    width: calc(100vw - 64px);
+    max-width: 100%;
+    overflow-x: hidden;
+    padding: 34px 0 78px;
+  }
+
+  .home-shell {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .home-profile {
+    position: static;
+    min-width: 0;
+    gap: 14px;
+    padding-top: 0;
+  }
+
+  .home-summary,
+  .home-post-main h3 {
+    overflow-wrap: anywhere;
+  }
+
+  .home-feed-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .home-post-row a {
+    grid-template-columns: 1fr 24px;
+    gap: 8px 14px;
+    min-height: 0;
+    padding: 18px 0;
+  }
+
+  .home-post-row time {
+    grid-column: 1 / -1;
+  }
+
+  .home-post-arrow {
+    align-self: start;
+    padding-top: 4px;
+  }
+
+  .home-notes {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 48px;
+  }
+
   .intro-band,
   .split-page {
     grid-template-columns: 1fr;
@@ -888,6 +1154,26 @@ button:focus-visible {
   .archive-item {
     grid-template-columns: 1fr;
     gap: 4px;
+  }
+}
+
+@media (max-width: 560px) {
+  .site-header {
+    gap: 10px;
+  }
+
+  .brand span {
+    display: none;
+  }
+
+  .nav a {
+    padding: 6px 6px;
+    font-size: 12px;
+  }
+
+  .home-profile h1,
+  .home-feed h2 {
+    font-size: clamp(32px, 10vw, 42px);
   }
 }
 
