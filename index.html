@@ -23,7 +23,6 @@
 <meta name="generator" content="Hexo 8.1.2"></head>
 <body>
   
-  
   <header class="site-header">
     <a class="brand" href="/" aria-label="TerryZee">
       <img class="brand-logo" src="/images/terryzee-mark.png" alt="">
@@ -61,9 +60,6 @@
         
         <a class="" href="/about/" >关于</a>
       
-      
-        <a class="" href="/#private-notes" >私密</a>
-      
     </nav>
   </header>
 
@@ -78,9 +74,6 @@
     <p class="hero-subtitle">一个配有各种传感器，每秒捕捉24帧并进行一系列处理的神经网络的运行日志</p>
     <div class="hero-actions">
       <a class="button primary" href="#latest">开始阅读</a>
-      
-        <a class="button ghost" href="#private-notes">私密文章</a>
-      
       <a class="button ghost" href="/about/">关于我</a>
     </div>
   </div>
@@ -101,35 +94,6 @@
   </div>
 </section>
 
-
-  <section class="section private-entry" id="private-notes" aria-labelledby="private-entry-title">
-    <div class="private-entry-copy">
-      <p class="section-label">Private</p>
-      <h2 id="private-entry-title">需要密码的文章</h2>
-      <p>这些文章只展示入口和标题，正文会在进入页面并输入密码后解锁。</p>
-    </div>
-
-    <div class="post-list private-post-list">
-      
-        <article class="post-card post-card-private">
-          <a href="/posts/2026/05/20/yi-han-zong-shi-guan-chuan-ren-sheng-shi-zhong/" aria-label="打开私密文章：遗憾总是贯穿人生始终">
-            <div class="post-card-top">
-              <time datetime="2026-05-20">2026-05-20</time>
-              <span class="lock-badge">私密</span>
-            </div>
-            <h3>遗憾总是贯穿人生始终</h3>
-            <p>这篇内容已加密，进入后输入密码阅读。</p>
-            <div class="meta-row">
-              <span>需要密码</span>
-              <span class="read-more">输入密码阅读</span>
-            </div>
-          </a>
-        </article>
-      
-    </div>
-  </section>
-
-
 <section class="section latest" id="latest">
   <div class="section-heading">
     <div>
@@ -139,28 +103,49 @@
     <a class="text-link" href="/archives/">查看归档</a>
   </div>
 
-  <div class="post-list">
-    
-    
+  <div class="latest-layout has-private-sidebar">
+    <div class="post-list latest-post-list">
       
-      <article class="post-card">
-        <a href="/posts/2026/05/22/2026-05-22-diary/">
-          <div class="post-card-top">
-            <time datetime="2026-05-22">2026-05-22</time>
-            
-              <span>日记</span>
-            
-          </div>
-          <h3>5-22</h3>
-          <p>对于这个学校，大家似乎都没什么归属感。极大部分优秀的人都想着赶紧跑，所以很少有人会去做社区，做树洞，做能增强让大家感觉这里像家的事。
+      
+        
+        <article class="post-card">
+          <a href="/posts/2026/05/22/2026-05-22-diary/">
+            <div class="post-card-top">
+              <time datetime="2026-05-22">2026-05-22</time>
+              
+                <span>日记</span>
+              
+            </div>
+            <h3>5-22</h3>
+            <p>对于这个学校，大家似乎都没什么归属感。极大部分优秀的人都想着赶紧跑，所以很少有人会去做社区，做树洞，做能增强让大家感觉这里像家的事。
 
 今天咨询了信工的大佬，发现基本上没有什么传承（连学校官网都是买的模板改的）。甚至没什么人对这方面感...</p>
-          <div class="meta-row">
-            
-            <span class="read-more">阅读全文</span>
-          </div>
-        </a>
-      </article>
+            <div class="meta-row">
+              
+              <span class="read-more">阅读全文</span>
+            </div>
+          </a>
+        </article>
+      
+    </div>
+
+    
+      <aside class="private-sidebar" id="private-notes" aria-labelledby="private-sidebar-title">
+        <p class="section-label">Private</p>
+        <h3 id="private-sidebar-title">私密入口</h3>
+        <p>需要密码的文章只在这里保留一个低调入口。</p>
+        <div class="private-sidebar-list">
+          
+            <a class="private-sidebar-link" href="/posts/2026/05/20/yi-han-zong-shi-guan-chuan-ren-sheng-shi-zhong/" aria-label="打开私密文章：遗憾总是贯穿人生始终">
+              <span>
+                <time datetime="2026-05-20">2026-05-20</time>
+                <em>需要密码</em>
+              </span>
+              <strong>遗憾总是贯穿人生始终</strong>
+            </a>
+          
+        </div>
+      </aside>
     
   </div>
 </section>
