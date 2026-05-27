@@ -783,13 +783,20 @@ button:focus-visible {
   gap: 24px;
 }
 
+.site-footer > div:first-child {
+  display: grid;
+  gap: 4px;
+  align-content: start;
+}
+
 .site-footer strong {
   display: block;
   color: var(--ink);
 }
 
 .footer-secret-link {
-  display: block;
+  display: inline-grid;
+  justify-self: start;
   width: max-content;
 }
 
