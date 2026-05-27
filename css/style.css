@@ -789,7 +789,8 @@ button:focus-visible {
 }
 
 .footer-secret-link {
-  display: inline-block;
+  display: block;
+  width: max-content;
 }
 
 .footer-secret-link:hover strong {
