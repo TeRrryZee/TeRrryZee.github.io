@@ -1,4 +1,5 @@
 const header = document.querySelector(".site-header");
+const nav = document.querySelector(".nav");
 
 function syncHeader() {
   if (!header) return;
@@ -7,6 +8,18 @@ function syncHeader() {
 
 syncHeader();
 window.addEventListener("scroll", syncHeader, { passive: true });
+
+const localHostnames = new Set(["", "localhost", "127.0.0.1", "::1"]);
+if (nav && localHostnames.has(window.location.hostname)) {
+  const studioLink = document.createElement("a");
+  studioLink.href = "/studio/";
+  studioLink.textContent = "写作台";
+  if (window.location.pathname.indexOf("/studio/") === 0) {
+    studioLink.className = "is-active";
+    studioLink.setAttribute("aria-current", "page");
+  }
+  nav.appendChild(studioLink);
+}
 
 const privatePosts = document.querySelectorAll("[data-private-post]");
 
