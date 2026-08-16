@@ -19,8 +19,10 @@
 
 <meta name="twitter:card" content="summary">
 
+  <link rel="icon" type="image/png" href="/images/terryzee-mark.png">
+  <link rel="apple-touch-icon" href="/images/terryzee-mark.png">
   <link rel="alternate" href="/atom.xml" title="TerryZee" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css?v=20260612-1">
+  <link rel="stylesheet" href="/css/style.css?v=20260816-1">
 <meta name="generator" content="Hexo 8.1.2"></head>
 <body>
   
@@ -64,6 +66,18 @@
         <a class="is-active" href="/about/" aria-current="page">关于</a>
       
     </nav>
+    <button class="search-toggle" type="button" aria-expanded="false" aria-controls="search-panel" aria-label="搜索文章" data-search-url="/search.xml">
+      <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="search-toggle-text">搜索</span>
+    </button>
+    <div class="search-panel" id="search-panel" hidden>
+      <label class="search-input-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input class="search-input" type="search" placeholder="搜索文章标题或内容…" autocomplete="off" aria-label="搜索文章标题或内容">
+      </label>
+      <div class="search-results" role="listbox" aria-label="搜索结果"></div>
+      <p class="search-empty" hidden>没有找到匹配的文章</p>
+    </div>
   </header>
 
   <main>
