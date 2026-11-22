@@ -1,14 +1,26 @@
+const root = document.documentElement;
 const header = document.querySelector(".site-header");
 const nav = document.querySelector(".nav");
 
-function syncHeader() {
-  if (!header) return;
-  header.classList.toggle("is-scrolled", window.scrollY > 24);
+/* Header shadow on scroll + reading progress */
+const progress = document.querySelector("[data-read-progress]");
+const articleBody = document.querySelector(".article-body");
+
+function onScroll() {
+  if (header) header.classList.toggle("is-scrolled", window.scrollY > 8);
+  if (progress && articleBody) {
+    const rect = articleBody.getBoundingClientRect();
+    const total = rect.height - window.innerHeight * 0.6;
+    const ratio = total > 0 ? Math.min(Math.max(-rect.top / total, 0), 1) : 1;
+    progress.style.transform = `scaleX(${ratio})`;
+  }
 }
 
-syncHeader();
-window.addEventListener("scroll", syncHeader, { passive: true });
+onScroll();
+window.addEventListener("scroll", onScroll, { passive: true });
+window.addEventListener("resize", onScroll);
 
+/* Local writing studio nav entry on localhost */
 const localHostnames = new Set(["", "localhost", "127.0.0.1", "::1"]);
 if (nav && localHostnames.has(window.location.hostname)) {
   const studioLink = document.createElement("a");
@@ -21,6 +33,36 @@ if (nav && localHostnames.has(window.location.hostname)) {
   nav.appendChild(studioLink);
 }
 
+/* Theme toggle */
+const themeToggle = document.querySelector("[data-theme-toggle]");
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    const next = root.dataset.theme === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem("theme", next);
+    } catch (error) {
+      /* storage unavailable */
+    }
+  });
+}
+
+/* Mobile navigation */
+const navToggle = document.querySelector("[data-nav-toggle]");
+if (navToggle && header) {
+  const setOpen = (open) => {
+    header.classList.toggle("nav-open", open);
+    navToggle.setAttribute("aria-expanded", String(open));
+    navToggle.setAttribute("aria-label", open ? "关闭导航" : "打开导航");
+  };
+  navToggle.addEventListener("click", () => setOpen(!header.classList.contains("nav-open")));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setOpen(false);
+  });
+  window.matchMedia("(min-width: 721px)").addEventListener("change", () => setOpen(false));
+}
+
+/* Private content decryption */
 const privatePosts = document.querySelectorAll("[data-private-post]");
 
 function base64ToBytes(value) {
@@ -81,6 +123,7 @@ privatePosts.forEach((privatePost) => {
     const password = new FormData(form).get("password");
     const button = form.querySelector("button");
     status.textContent = "正在解锁...";
+    status.classList.remove("is-error");
     if (button) button.disabled = true;
 
     try {
@@ -89,6 +132,7 @@ privatePosts.forEach((privatePost) => {
       content.hidden = false;
       panel.hidden = true;
     } catch (error) {
+      status.classList.add("is-error");
       status.textContent =
         error && error.message === "UNSUPPORTED_CRYPTO"
           ? "当前浏览器环境不支持安全解密，请使用 HTTPS 地址或现代浏览器。"
@@ -98,26 +142,24 @@ privatePosts.forEach((privatePost) => {
   });
 });
 
+/* Header search panel */
 (function initSearch() {
   const toggle = document.querySelector(".search-toggle");
-  const panel = document.querySelector(".search-panel");
+  const panel = document.getElementById("search-panel");
   if (!toggle || !panel) return;
 
   const input = panel.querySelector(".search-input");
   const results = panel.querySelector(".search-results");
   const empty = panel.querySelector(".search-empty");
-  const searchUrl = toggle.getAttribute("data-search-url") || "/search.xml";
-
+  const searchUrl = toggle.dataset.searchUrl || "/search.xml";
+  let index = null;
   let indexPromise = null;
-  let index = [];
 
   function loadIndex() {
+    if (index) return Promise.resolve(index);
     if (!indexPromise) {
-      indexPromise = fetch(searchUrl, { cache: "force-cache" })
-        .then((response) => {
-          if (!response.ok) throw new Error("SEARCH_INDEX_UNAVAILABLE");
-          return response.text();
-        })
+      indexPromise = fetch(searchUrl)
+        .then((res) => (res.ok ? res.text() : ""))
         .then((xmlText) => {
           const doc = new DOMParser().parseFromString(xmlText, "application/xml");
           index = Array.from(doc.querySelectorAll("entry")).map((entry) => {
