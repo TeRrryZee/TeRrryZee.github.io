@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" fill="none">
+  <title>TerryZee</title>
+  <style>
+    .tz-frame { stroke: #172236; }
+    .tz-t { fill: #172236; }
+    .tz-z { fill: #1f7f75; }
+    .tz-gold { fill: #d4951f; }
+    @media (prefers-color-scheme: dark) {
+      .tz-frame { stroke: #eef2f7; }
+      .tz-t { fill: #eef2f7; }
+      .tz-z { fill: #4fbcae; }
+      .tz-gold { fill: #f0b54a; }
+    }
+  </style>
+  <!-- Open optical viewfinder frame (24 FPS) -->
+  <path class="tz-frame" d="M324 68H152C105.6 68 68 105.6 68 152V360C68 406.4 105.6 444 152 444H360C406.4 444 444 406.4 444 360V188" stroke="#172236" stroke-width="26" stroke-linecap="round"/>
+  <!-- Sensor pulse halo & indicator -->
+  <circle class="tz-gold" cx="408" cy="104" r="46" fill="#d4951f" opacity="0.18"/>
+  <circle class="tz-gold" cx="408" cy="104" r="28" fill="#d4951f"/>
+  <!-- Geometric TZ monogram -->
+  <path class="tz-t" d="M136 152H292L264 190H224V360H184V190H136V152Z" fill="#172236"/>
+  <path class="tz-z" d="M244 216H376V249L300 324H376V360H244V327L320 252H244V216Z" fill="#1f7f75"/>
+</svg>
